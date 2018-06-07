@@ -8,14 +8,10 @@ public class PotionMovement : MonoBehaviour {
     public GameObject hero;
     float distance;
 
-    void Start(){
-        hero = GameObject.Find("Footman");
-    }
+    void Start(){}
 
     void Update(){
-        distance = Vector3.Distance(transform.position, hero.transform.position);
-        if (distance < 0.7f){
-            hero.GetComponent<Animation>().SendMessage("deltaLife", 20);
-        }
+        transform.position = new Vector3(transform.position.x, 1.0f + 0.5f*Mathf.Sin(5.0f*Time.time), transform.position.z);
+
     }
 }

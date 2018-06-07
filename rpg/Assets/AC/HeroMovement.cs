@@ -3,17 +3,28 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class HeroMovement : MonoBehaviour{
+    public GameObject potion;
     public static Text lifeText;
-    public static int life;
-    public float speed = 0.1f;
+    public int life;
+    public float speed = 0.1f, distance_potion;
     private Rigidbody rb;
     private Animator animator;
 
     void Start(){
         life = 100;
-        lifeText = GameObject.Find("lifeText").GetComponent<Text>(); 
+        lifeText = GameObject.Find("lifeText").GetComponent<Text>();
+        lifeText.text = "Vida: " + life.ToString();
+        potion = GameObject.Find("Potion_Finished");
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+    }
+
+    void Update(){
+        distance_potion = Vector3.Distance(transform.position, potion.transform.position);
+        if (distance_potion < 1.0f && potion.activeSelf){
+            potion.SetActive(false);
+            deltaLife(20);
+        }
     }
 
     void FixedUpdate()
@@ -35,6 +46,6 @@ public class HeroMovement : MonoBehaviour{
 
     public void deltaLife(int delta){
         life += delta;
-        lifeText.text = "Life: " + life.ToString();
+        lifeText.text = "Vida: " + life.ToString();
     }
 }
