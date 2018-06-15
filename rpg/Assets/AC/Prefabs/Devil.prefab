@@ -651,8 +651,8 @@ GameObject:
   - component: {fileID: 4572805980737622}
   - component: {fileID: 95792018113910206}
   - component: {fileID: 114028079292815282}
-  - component: {fileID: 54211071110282020}
-  - component: {fileID: 136648624128648620}
+  - component: {fileID: 65819355911952486}
+  - component: {fileID: 54400276078597180}
   m_Layer: 0
   m_Name: Devil
   m_TagString: Enemy
@@ -1455,7 +1455,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1741947318900560}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.89, y: 0, z: 2.59}
+  m_LocalPosition: {x: -14.19, y: 0, z: 2.59}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4807817328815510}
@@ -1784,7 +1784,7 @@ Transform:
   m_Father: {fileID: 4975790663273826}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &54211071110282020
+--- !u!54 &54400276078597180
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -1799,6 +1799,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &65819355911952486
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1741947318900560}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!95 &95792018113910206
 Animator:
   serializedVersion: 3
@@ -1808,7 +1820,7 @@ Animator:
   m_GameObject: {fileID: 1741947318900560}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 75bf79f8876829a44bb388ccd90400a7, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7827c1b6af7bf414fb7ef7722c7d29a5, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1828,19 +1840,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   alpha: 0.99
---- !u!136 &136648624128648620
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1741947318900560}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.4332187
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.71660936, z: 0}
 --- !u!137 &137381262571589202
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
