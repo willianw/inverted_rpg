@@ -6,10 +6,9 @@ public class Camera: MonoBehaviour{
     float weight = 0.5f, distance;
 
     void Start(){
-         offset = transform.position - player.transform.position;
+        offset = transform.position - player.transform.position;
         distance = offset.magnitude;
         height = new Vector3(0.0f, 1.0f, 0.0f);
-    
     }
 
     void LateUpdate(){
