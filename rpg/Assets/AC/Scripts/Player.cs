@@ -4,13 +4,14 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour {
     public Text lifeText;
     public int life;
-    public float speed = 0.1f;
+    public float speed = 0.1f, rotationSpeed;
     private Rigidbody rb;
     private Animator animator;
 
     void Start() {
         life = 100;
         lifeText.text = "Vida: " + life.ToString();
+        rotationSpeed = 1.0f;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
@@ -28,7 +29,7 @@ public class Player : MonoBehaviour {
 
         Vector3 translation = transform.forward * moveVertical;
         Vector3 rotation = new Vector3(0.0f, moveHorizontal, 0.0f);
-        Quaternion deltaRotation = Quaternion.Euler(rotation * 400f * Time.deltaTime);
+        Quaternion deltaRotation = Quaternion.Euler(rotation * 400f * Time.deltaTime * rotationSpeed);
         rb.MoveRotation(rb.rotation * deltaRotation);
         rb.AddForce(translation * speed);
     }
@@ -53,13 +54,14 @@ public class Player : MonoBehaviour {
     private void triggerDeath()
     {
         animator.SetTrigger("Death");
-        while (!((animator.GetCurrentAnimatorStateInfo(0).length >
+        if (((animator.GetCurrentAnimatorStateInfo(0).length >
             animator.GetCurrentAnimatorStateInfo(0).normalizedTime)
             && animator.GetCurrentAnimatorStateInfo(0).IsName("Dead")))
         {
-
+            Application.Quit();
         }
-        Time.timeScale = 0.0f;
+        speed = 0.0f;
+        rotationSpeed = 0.0f;
         //TODO- mostrar tela de morte e score
     }
     public void deltaLife(int delta){
