@@ -23,6 +23,11 @@ public class Devil : MonoBehaviour {
             z = (alpha) * transform.position.z + (1 - alpha) * hero.transform.position.z;
 
             transform.position = new Vector3(x, y, z);
+        } else if (animator.GetCurrentAnimatorStateInfo(0).IsName("Dead"))
+        {
+            y = transform.position.y - 0.1f;
+            transform.position = new Vector3(transform.position.x, y, transform.position.z);
+            GameObject.Destroy(this.gameObject); 
         }
         transform.LookAt(hero.transform);
     }
@@ -62,5 +67,6 @@ public class Devil : MonoBehaviour {
     private void Die()
     {
         animator.SetTrigger("Death");
+        
     }
 }
