@@ -1816,6 +1816,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114028079292815282
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1830,6 +1831,7 @@ MonoBehaviour:
   alpha: 0.995
   aggroTriggerDistance: 5
   animator: {fileID: 95792018113910206}
+  life: 40
 --- !u!136 &136648624128648620
 CapsuleCollider:
   m_ObjectHideFlags: 1
@@ -1856,6 +1858,7 @@ SkinnedMeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 88c26080bc0a94d76bfdb4c8e6dbca45, type: 2}
   m_StaticBatchInfo:

@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
@@ -34,18 +36,46 @@ public class Player : MonoBehaviour {
         rb.AddForce(translation * speed);
     }
 
+    private bool IsHealingPotion(Component component)
+    {
+        return component.CompareTag("HealingPotion");
+    }
+
+    private bool IsSpeedUpPotion(Component component)
+    {
+        return component.CompareTag("SpeedUpPotion");
+    }
+
+    private void IncreaseSpeed(float amount)
+    {
+        speed += amount;
+    }
+    private IEnumerator SpeedUp(float speedIncrease)
+    {
+        IncreaseSpeed(speedIncrease);
+        yield return new WaitForSeconds(3);
+        IncreaseSpeed(-speedIncrease);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PickUp"))
+        if (IsHealingPotion(other))
         {
             deltaLife(20);
             GameObject.Destroy(other.gameObject);
+        } else if (IsSpeedUpPotion(other))
+        {
+            StartCoroutine(SpeedUp(50));
         }
     }
+    
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Enemy"))
         {
+            var devil = collision.collider.GetComponent<Devil>();
+            devil.TakeDamage(30f);
+
             animator.SetTrigger("Damaged");
             deltaLife(-50);
         }
@@ -67,9 +97,9 @@ public class Player : MonoBehaviour {
     public void deltaLife(int delta){
         life += delta;
         lifeText.text = "Vida: " + life.ToString();
-       if (life <= 0)
+       /*if (life <= 0)
         {
             triggerDeath();
-        }
+        }*/
     }
 }

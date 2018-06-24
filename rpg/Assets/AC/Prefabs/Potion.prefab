@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 65262152035307892}
   m_Layer: 0
   m_Name: Potion
-  m_TagString: PickUp
+  m_TagString: HealingPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,6 +148,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 14de5c824600848d4b6bdcd2b62bfead, type: 2}
   m_StaticBatchInfo:
@@ -182,6 +183,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: 48474500c6c7ce44d835f813f79d8fe6, type: 2}
   m_StaticBatchInfo:
@@ -216,6 +218,7 @@ MeshRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 2100000, guid: f613797c4cd2ff246a1b313b65956e07, type: 2}
   m_StaticBatchInfo:

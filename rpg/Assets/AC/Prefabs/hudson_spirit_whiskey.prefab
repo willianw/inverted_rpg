@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 198802412496572186}
   m_Layer: 0
   m_Name: hudson_spirit_whiskey
-  m_TagString: PickUp
+  m_TagString: SpeedUpPotion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PickUp
   - Enemy
+  - HealingPotion
+  - SpeedUpPotion
   layers:
   - Default
   - TransparentFX

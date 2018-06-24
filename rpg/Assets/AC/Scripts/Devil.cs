@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class Devil : MonoBehaviour {
     public float alpha;
     public float aggroTriggerDistance;
     private GameObject hero;
     public Animator animator;
+    public float life;
     private float x, y, z;
+    
 
     private void Start()
     {
@@ -44,5 +47,20 @@ public class Devil : MonoBehaviour {
         
     }
 
+    internal void TakeDamage(float v)
+    {
+        life -= v;
+        if (life <= 0)
+        {
+            Die();
+        } else
+        {
+            animator.SetTrigger("Damaged");
+        }
+    }
 
+    private void Die()
+    {
+        animator.SetTrigger("Death");
+    }
 }
