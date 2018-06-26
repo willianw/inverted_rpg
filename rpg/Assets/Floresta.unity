@@ -1980,6 +1980,7 @@ GameObject:
   - component: {fileID: 1971495816}
   - component: {fileID: 1971495819}
   - component: {fileID: 1971495820}
+  - component: {fileID: 1971495821}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1998,8 +1999,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5eb97d5da6684f5aad360131b6bc81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeText: {fileID: 1637215148}
-  life: 100
+  healthPointsText: {fileID: 1637215148}
+  healthPoints: 0
   speed: 5
   rotationSpeed: 0
 --- !u!95 &1971495817
@@ -2064,6 +2065,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0.6, z: 0}
+--- !u!114 &1971495821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971495815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bab3ea94f86b354fa8351e31b674b13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1974656148
 GameObject:
   m_ObjectHideFlags: 0

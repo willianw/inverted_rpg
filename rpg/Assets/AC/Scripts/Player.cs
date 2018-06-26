@@ -4,20 +4,25 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
-    public Text lifeText;
-    public int life;
-    public float speed = 0.1f, rotationSpeed;
+    public Text healthPointsText;
+    public int healthPoints;
+    public float baseSpeed = 0.1f, rotationSpeed;
+    private float speed;
+    private PlayerStats _playerStats;
     private Rigidbody rb;
     private Animator animator;
-
+    private int HEALTH_POINTS_MULTIPLIER = 10;
+    private float SPEED_MULTIPLIER = 1.5f;
+   
     void Start() {
-        life = 100;
-        lifeText.text = "Vida: " + life.ToString();
-        rotationSpeed = 1.0f;
+        _playerStats = GetComponent<PlayerStats>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        healthPoints = CalculateHealthPoints(_playerStats.Find<Vitality>().Value());
+        speed = CalculateSpeed(_playerStats.Find<Agility>().Value());
+        UpdateHealthPointsText(healthPoints);
+        rotationSpeed = 1.0f;
     }
-
 
     void FixedUpdate()
     {
@@ -34,6 +39,20 @@ public class Player : MonoBehaviour {
         Quaternion deltaRotation = Quaternion.Euler(rotation * 400f * Time.deltaTime * rotationSpeed);
         rb.MoveRotation(rb.rotation * deltaRotation);
         rb.AddForce(translation * speed);
+    }
+    private void UpdateHealthPointsText(int updatedHealthPoints)
+    {
+        healthPointsText.text = "Health: " + updatedHealthPoints.ToString();
+    }
+
+    private float CalculateSpeed(int agilityAmount)
+    {
+        return baseSpeed + SPEED_MULTIPLIER * agilityAmount;
+    }
+
+    private int CalculateHealthPoints(int vitalityAmount)
+    {
+        return HEALTH_POINTS_MULTIPLIER * vitalityAmount;
     }
 
     private bool IsHealingPotion(Component component)
@@ -81,7 +100,7 @@ public class Player : MonoBehaviour {
         }
     }
 
-    private void triggerDeath()
+    private void Die()
     {
         animator.SetTrigger("Death");
         if (((animator.GetCurrentAnimatorStateInfo(0).length >
@@ -95,11 +114,11 @@ public class Player : MonoBehaviour {
         //TODO- mostrar tela de morte e score
     }
     public void deltaLife(int delta){
-        life += delta;
-        lifeText.text = "Vida: " + life.ToString();
-       /*if (life <= 0)
+        healthPoints += delta;
+        UpdateHealthPointsText(healthPoints);
+       if (healthPoints <= 0)
         {
-            triggerDeath();
-        }*/
+            Die();
+        }
     }
 }
