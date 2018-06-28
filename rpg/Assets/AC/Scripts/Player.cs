@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    public ParticleSystem pSystem;
     public Text healthPointsText;
     public int healthPoints;
     public float baseSpeed = 0.1f, rotationSpeed;
@@ -75,17 +76,23 @@ public class Player : MonoBehaviour {
         yield return new WaitForSeconds(3);
         IncreaseSpeed(-speedIncrease);
     }
+    private void emitParticles(ParticleSystem pSystem, Vector3 position)
+    {
+        var p = Instantiate<ParticleSystem>(pSystem, position, Quaternion.identity);
+        Destroy(p.gameObject, p.main.startLifetime.constant);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (IsHealingPotion(other))
         {
             deltaLife(20);
-            GameObject.Destroy(other.gameObject);
         } else if (IsSpeedUpPotion(other))
         {
             StartCoroutine(SpeedUp(50));
         }
+        emitParticles(pSystem, transform.position);
+        GameObject.Destroy(other.gameObject);
     }
     
     private void OnCollisionEnter(Collision collision)

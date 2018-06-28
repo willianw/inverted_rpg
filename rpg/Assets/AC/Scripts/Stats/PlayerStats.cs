@@ -14,7 +14,7 @@ public class PlayerStats : MonoBehaviour {
         var found = Stats.Where(stat => stat.GetType() == typeof(T)).FirstOrDefault();
         return found != null ? (T)found : null;
     }
-    void Start () {
+    void Awake () {
         Stats = new List<BaseStat>{ new Vitality(), new Agility()};
 	}
 }

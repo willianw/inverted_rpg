@@ -1999,9 +1999,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5eb97d5da6684f5aad360131b6bc81c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pSystem: {fileID: 198291839907710468, guid: 8940b6d8a227d034ca557b308388579a, type: 2}
   healthPointsText: {fileID: 1637215148}
   healthPoints: 0
-  speed: 5
+  baseSpeed: 0.1
   rotationSpeed: 0
 --- !u!95 &1971495817
 Animator:
