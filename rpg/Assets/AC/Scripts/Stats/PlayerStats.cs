@@ -4,7 +4,7 @@ using System.Linq;
 public class PlayerStats {
     public PlayerStats()
     {
-        Stats = new List<BaseStat> { new Vitality(), new Agility() };
+        Stats = new List<BaseStat> { new Vitality(), new Agility(), new Strength()};
     }
     public IList<BaseStat> Stats { get; private set; }
     public BaseStat FindByName(string name)

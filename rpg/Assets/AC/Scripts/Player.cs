@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,22 @@ public class Player : MonoBehaviour {
         _playerStats = new PlayerStats();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        healthPoints = CalculateHealthPoints(_playerStats.Find<Vitality>().Value());
-        speed = CalculateSpeed(_playerStats.Find<Agility>().Value());
+        var vitality = _playerStats.Find<Vitality>().Value();
+        var agility = _playerStats.Find<Agility>().Value();
+        var strength = _playerStats.Find<Strength>().Value();
+        healthPoints = CalculateHealthPoints(vitality);
+        speed = CalculateSpeed(agility);
         UpdateHealthPointsText(healthPoints);
+        UIController.PlayerHealthChanged(healthPoints);
+        NotifyStatsChanged(vitality, agility, strength);
         rotationSpeed = 1.0f;
+    }
+
+    private void NotifyStatsChanged(int vitality, int agility, int strength)
+    {
+        UIController.PlayerVitalityChanged(vitality);
+        UIController.PlayerAgilityChanged(agility);
+        UIController.PlayerStrengthChanged(strength);
     }
 
     void FixedUpdate()
@@ -140,6 +153,7 @@ public class Player : MonoBehaviour {
     }
     public void deltaLife(int delta){
         healthPoints += delta;
+        UIController.PlayerHealthChanged(healthPoints);
         UpdateHealthPointsText(healthPoints);
     }
 }
