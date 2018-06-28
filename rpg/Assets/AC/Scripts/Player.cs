@@ -37,6 +37,22 @@ public class Player : MonoBehaviour {
     {
         _playerStats.LevelDown();
         NotifyStatsChanged();
+        RefreshSpeed();
+        RefreshHP();
+    }
+
+    private void RefreshHP()
+    {
+        var vitality = _playerStats.Find<Vitality>().Value();
+        var calculated = CalculateHealthPoints(vitality);
+        healthPoints = Math.Min(healthPoints, calculated);
+        UIController.PlayerHealthChanged(healthPoints);
+    }
+
+    private void RefreshSpeed()
+    {
+        var agility = _playerStats.Find<Agility>().Value();
+        speed = CalculateSpeed(agility);
     }
 
     private void NotifyStatsChanged()
@@ -133,7 +149,7 @@ public class Player : MonoBehaviour {
         if (collision.collider.CompareTag("Enemy"))
         {
             var devil = collision.collider.GetComponent<Devil>();
-            devil.TakeDamage(30f);
+            devil.TakeDamage(10f);
 
             //animator.SetTrigger("Damaged");
             //deltaLife(-50);
