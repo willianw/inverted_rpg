@@ -16,4 +16,11 @@ public class PlayerStats {
         var found = Stats.Where(stat => stat.GetType() == typeof(T)).FirstOrDefault();
         return found != null ? (T)found : null;
     }
+    public void LevelDown()
+    {
+        foreach (var stat in Stats)
+        {
+            stat.AddStatBonus(new StatBonus(-1));
+        }
+    }
 }

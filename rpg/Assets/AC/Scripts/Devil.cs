@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class Devil : MonoBehaviour {
+public class Devil : MonoBehaviour, IEnemy {
     public float alpha;
     public float aggroTriggerDistance;
     private GameObject hero;
@@ -9,11 +9,12 @@ public class Devil : MonoBehaviour {
     public float life;
     private float x, y, z;
     private IWeapon Weapon;
-    
+
     private void Start()
     {
         hero = GameObject.FindWithTag("Player");
         Weapon = GetComponentInChildren<IWeapon>();
+        life = 30;
     }
     void Update()
     {
@@ -52,7 +53,15 @@ public class Devil : MonoBehaviour {
             }    
     }
 
-    internal void TakeDamage(float v)
+    public int Experience
+    {
+        get
+        {
+            return 100;
+        }
+    }
+
+    public void TakeDamage(float v)
     {
         life -= v;
         if (life <= 0)
@@ -64,8 +73,9 @@ public class Devil : MonoBehaviour {
         }
     }
 
-    private void Die()
+    public void Die()
     {
         animator.SetTrigger("Death");
+        hero.GetComponent<PlayerLevel>().GrantExperience(Experience);
     }
 }

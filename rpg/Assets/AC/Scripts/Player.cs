@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
+    public PlayerLevel PlayerLevel { get; set; }
     public ParticleSystem pSystem;
     public Text healthPointsText;
     public int healthPoints;
@@ -16,6 +17,7 @@ public class Player : MonoBehaviour {
     private float SPEED_MULTIPLIER = 1.5f;
    
     void Start() {
+        PlayerLevel = GetComponent<PlayerLevel>();
         _playerStats = new PlayerStats();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
@@ -28,6 +30,20 @@ public class Player : MonoBehaviour {
         UIController.PlayerHealthChanged(healthPoints);
         NotifyStatsChanged(vitality, agility, strength);
         rotationSpeed = 1.0f;
+        UIController.OnPlayerLevelChanged += UpdateLevel; 
+    }
+
+    void UpdateLevel(int level)
+    {
+        _playerStats.LevelDown();
+        NotifyStatsChanged();
+    }
+
+    private void NotifyStatsChanged()
+    {
+        NotifyStatsChanged(_playerStats.Find<Vitality>().Value(),
+            _playerStats.Find<Agility>().Value(), 
+            _playerStats.Find<Strength>().Value());
     }
 
     private void NotifyStatsChanged(int vitality, int agility, int strength)
@@ -116,8 +132,8 @@ public class Player : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            //var devil = collision.collider.GetComponent<Devil>();
-            //devil.TakeDamage(30f);
+            var devil = collision.collider.GetComponent<Devil>();
+            devil.TakeDamage(30f);
 
             //animator.SetTrigger("Damaged");
             //deltaLife(-50);
