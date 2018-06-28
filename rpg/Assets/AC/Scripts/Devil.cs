@@ -57,7 +57,7 @@ public class Devil : MonoBehaviour, IEnemy {
     {
         get
         {
-            return 100;
+            return 30;
         }
     }
 
