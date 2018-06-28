@@ -7,7 +7,8 @@ public class PlayerLevel : MonoBehaviour {
     public int RequiredExperience { get { return Level * 10; } }
     void Start()
     {
-        Level = 10;    
+        Level = 10;
+        UIController.PlayerLevelChanged(Level);
     }
 
     public void GrantExperience(int amount)

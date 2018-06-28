@@ -8,13 +8,13 @@ public class Player : MonoBehaviour {
     public ParticleSystem pSystem;
     public Text healthPointsText;
     public int healthPoints;
-    public float baseSpeed = 0.1f, rotationSpeed;
+    public float baseSpeed = 0.05f, rotationSpeed;
     private float speed;
     private PlayerStats _playerStats;
     private Rigidbody rb;
     private Animator animator;
     private int HEALTH_POINTS_MULTIPLIER = 10;
-    private float SPEED_MULTIPLIER = 1.5f;
+    private float SPEED_MULTIPLIER = 1.1f;
    
     void Start() {
         PlayerLevel = GetComponent<PlayerLevel>();
@@ -148,8 +148,8 @@ public class Player : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            var devil = collision.collider.GetComponent<Devil>();
-            devil.TakeDamage(10f);
+            //var devil = collision.collider.GetComponent<Devil>();
+            //devil.TakeDamage(30f);
 
             //animator.SetTrigger("Damaged");
             //deltaLife(-50);
