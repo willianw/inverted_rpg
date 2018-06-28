@@ -83,28 +83,47 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (IsHealingPotion(other))
+        if (!other.CompareTag("Weapon"))
         {
-            deltaLife(20);
-        } else if (IsSpeedUpPotion(other))
-        {
-            StartCoroutine(SpeedUp(50));
+
+            if (IsHealingPotion(other))
+            {
+                deltaLife(20);
+            }
+            else if (IsSpeedUpPotion(other))
+            {
+                StartCoroutine(SpeedUp(50));
+            }
+            emitParticles(pSystem, transform.position);
+            GameObject.Destroy(other.gameObject);
         }
-        emitParticles(pSystem, transform.position);
-        GameObject.Destroy(other.gameObject);
     }
     
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.CompareTag("Enemy"))
         {
-            var devil = collision.collider.GetComponent<Devil>();
-            devil.TakeDamage(30f);
+            //var devil = collision.collider.GetComponent<Devil>();
+            //devil.TakeDamage(30f);
 
-            animator.SetTrigger("Damaged");
-            deltaLife(-50);
+            //animator.SetTrigger("Damaged");
+            //deltaLife(-50);
         }
     }
+
+    public void TakeDamage(int damage)
+    {
+        deltaLife(-damage);
+        if (healthPoints <= 0)
+        {
+            Die();
+        }
+        else
+        {
+            animator.SetTrigger("Damaged");
+        }
+    }
+        
 
     private void Die()
     {
@@ -122,9 +141,5 @@ public class Player : MonoBehaviour {
     public void deltaLife(int delta){
         healthPoints += delta;
         UpdateHealthPointsText(healthPoints);
-       if (healthPoints <= 0)
-        {
-            Die();
-        }
     }
 }

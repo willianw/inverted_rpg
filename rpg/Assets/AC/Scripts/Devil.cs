@@ -8,11 +8,12 @@ public class Devil : MonoBehaviour {
     public Animator animator;
     public float life;
     private float x, y, z;
+    private IWeapon Weapon;
     
-
     private void Start()
     {
         hero = GameObject.FindWithTag("Player");
+        Weapon = GetComponentInChildren<IWeapon>();
     }
     void Update()
     {
@@ -47,9 +48,8 @@ public class Devil : MonoBehaviour {
     {
         if (collision.collider.CompareTag("Player"))
             {
-                animator.SetTrigger("Attack");
-            }
-        
+            Weapon.PerformAttack();
+            }    
     }
 
     internal void TakeDamage(float v)
@@ -67,6 +67,5 @@ public class Devil : MonoBehaviour {
     private void Die()
     {
         animator.SetTrigger("Death");
-        
     }
 }

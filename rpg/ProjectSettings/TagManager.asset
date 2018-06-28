@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - HealingPotion
   - SpeedUpPotion
+  - Weapon
   layers:
   - Default
   - TransparentFX
