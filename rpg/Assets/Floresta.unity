@@ -2230,6 +2230,8 @@ GameObject:
   - component: {fileID: 984010612}
   - component: {fileID: 984010614}
   - component: {fileID: 984010613}
+  - component: {fileID: 984010616}
+  - component: {fileID: 984010615}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -2293,6 +2295,30 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 984010611}
   m_Mesh: {fileID: 4300004, guid: 2cfba37fab445484d96249beba922637, type: 3}
+--- !u!136 &984010615
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984010611}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.13197486
+  m_Height: 0.8025871
+  m_Direction: 2
+  m_Center: {x: -0.03, y: -0.02, z: 0.19}
+--- !u!114 &984010616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 984010611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d5163315102c504d91e30594ae3fce1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &986544104
 GameObject:
   m_ObjectHideFlags: 0

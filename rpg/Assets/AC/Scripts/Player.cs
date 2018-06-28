@@ -128,7 +128,7 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Weapon"))
+        if (!other.CompareTag("Weapon") && !other.CompareTag("Enemy"))
         {
 
             if (IsHealingPotion(other))

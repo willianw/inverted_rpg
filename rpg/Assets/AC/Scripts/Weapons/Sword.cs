@@ -1,30 +1,28 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Sword : MonoBehaviour, IWeapon {
-    
-    public IList<BaseStat> Stats
+
+    public Animator Animator { get; private set; }
+    public IList<BaseStat> Stats { get; private set; }
+
+    private void Start()
     {
-        get
-        {
-        return null;
-           // Stats = new List<BaseStat> { new Strength() };
-        }
-    }
+        Animator = GetComponentInParent<Animator>();
+        Stats = new List<BaseStat> { new Strength() };
+    }    
 
     public void PerformAttack()
     {
-        throw new System.NotImplementedException();
+        Animator.SetTrigger("Attack");
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            other.GetComponent<Devil>().TakeDamage(Stats[0].Value());
+        }
+    }
 }
+
