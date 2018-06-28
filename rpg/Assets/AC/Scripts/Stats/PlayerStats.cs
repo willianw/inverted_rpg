@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
 
-public class PlayerStats : MonoBehaviour {
-
+public class PlayerStats {
+    public PlayerStats()
+    {
+        Stats = new List<BaseStat> { new Vitality(), new Agility() };
+    }
     public IList<BaseStat> Stats { get; private set; }
     public BaseStat FindByName(string name)
     {
@@ -14,7 +16,4 @@ public class PlayerStats : MonoBehaviour {
         var found = Stats.Where(stat => stat.GetType() == typeof(T)).FirstOrDefault();
         return found != null ? (T)found : null;
     }
-    void Awake () {
-        Stats = new List<BaseStat>{ new Vitality(), new Agility()};
-	}
 }

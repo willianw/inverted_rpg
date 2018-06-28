@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +15,7 @@ public class Player : MonoBehaviour {
     private float SPEED_MULTIPLIER = 1.5f;
    
     void Start() {
-        _playerStats = GetComponent<PlayerStats>();
+        _playerStats = new PlayerStats();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         healthPoints = CalculateHealthPoints(_playerStats.Find<Vitality>().Value());
